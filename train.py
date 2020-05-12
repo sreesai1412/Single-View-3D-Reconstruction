@@ -9,7 +9,6 @@ import chainer
 import cupy as cp
 import neural_renderer
 
-import dataset_pascal
 import dataset_shapenet
 import models
 import training
@@ -19,7 +18,6 @@ def run():
     class_list_shapenet = [
         '02691156', '02828884', '02933112', '02958343', '03001627', '03211117', '03636649',
         '03691459', '04090263', '04256520', '04379243', '04401088', '04530566']
-    class_list_pascal = ['aeroplane', 'car', 'chair']
 
     parser = argparse.ArgumentParser()
 
@@ -80,29 +78,6 @@ def run():
         parser.add_argument('-dt', '--discriminator_type', type=str, default='shapenet_patch')
         parser.add_argument('-vs', '--vertex_scaling', type=float, default=0.01)
 
-    elif 'pascal' in sys.argv:
-        # dataset
-        parser.add_argument('-ds', '--dataset', type=str, default='pascal')
-        parser.add_argument('-cls', '--class_ids', type=str, default=','.join(class_list_pascal))
-        parser.add_argument('-sym', '--symmetric', type=int, default=1)
-
-        # loss function
-        parser.add_argument('-slt', '--silhouette_loss_type', type=str, default='iou')
-        parser.add_argument('-linf', '--lambda_inflation', type=float, default=0)
-        parser.add_argument('-lgl', '--lambda_graph_laplacian', type=float, default=0)
-
-        # training
-        parser.add_argument('-bs', '--batch_size', type=int, default=16)
-        parser.add_argument('-lr', '--learning_rate', type=float, default=2e-5)
-        parser.add_argument('-ni', '--num_iterations', type=int, default=1000000)
-
-        # components
-        parser.add_argument('-et', '--encoder_type', type=str, default='resnet18pt')
-        parser.add_argument('-sdt', '--shape_decoder_type', type=str, default='fc')
-        parser.add_argument('-tdt', '--texture_decoder_type', type=str, default='conv')
-        parser.add_argument('-dt', '--discriminator_type', type=str, default='pascal_patch')
-        parser.add_argument('-vs', '--vertex_scaling', type=float, default=0.1)
-
     args = parser.parse_args()
     directory_output = os.path.join(args.model_directory, args.experiment_id)
     class_ids = args.class_ids.split(',')
@@ -118,9 +93,7 @@ def run():
         dataset_train = dataset_shapenet.ShapeNet(
             args.dataset_directory, class_ids, 'train', args.num_views, args.single_view_training, device=args.gpu)
         dataset_val = dataset_shapenet.ShapeNet(args.dataset_directory, class_ids, 'val', device=args.gpu)
-    else:
-        dataset_train = dataset_pascal.Pascal(args.dataset_directory, class_ids, 'train')
-        dataset_val = dataset_pascal.Pascal(args.dataset_directory, class_ids, 'val')
+
     iterator_train = training.Iterator(dataset_train, args.batch_size)
     draw_batch_train = dataset_train.get_random_batch(16)
     draw_batch_val = dataset_val.get_random_batch(16)
@@ -161,26 +134,7 @@ def run():
             num_views=args.num_views,
         )
         num_views_for_validation = 1
-    elif args.dataset == 'pascal':
-        model = models.PascalModel(
-            encoder_type=args.encoder_type,
-            shape_decoder_type=args.shape_decoder_type,
-            texture_decoder_type=args.texture_decoder_type,
-            discriminator_type=args.discriminator_type,
-            silhouette_loss_type=args.silhouette_loss_type,
-            vertex_scaling=args.vertex_scaling,
-            texture_scaling=args.texture_scaling,
-            silhouette_loss_levels=args.silhouette_loss_levels,
-            lambda_silhouettes=args.lambda_silhouettes,
-            lambda_perceptual=args.lambda_perceptual,
-            lambda_inflation=args.lambda_inflation,
-            lambda_graph_laplacian=args.lambda_graph_laplacian,
-            lambda_discriminator=args.lambda_discriminator,
-            no_texture=no_texture,
-            symmetric=args.symmetric,
-            class_conditional=args.class_conditional,
-        )
-        num_views_for_validation = None
+
     model.to_gpu(args.gpu)
     adam_params = {
         'alpha': args.learning_rate,
