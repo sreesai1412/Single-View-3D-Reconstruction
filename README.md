@@ -55,29 +55,29 @@ nohup python -m visdom.server
 ```
 See `main.py` to adjust hyper-parameters (for eg. increase `tex_loss_wt` and `text_dt_loss_wt` if you want better texture or increase texture resolution with `tex_size`). See `nnutils/mesh_net.py` and `nnutils/train_utils.py` for more model/training options.
 ```
-python  main.py --name=bird_net --display_port 8097
+python  main.py --name=<experiment_name> --display_port 8097
 ```
 More settings
 ```
 # Stronger texture & higher resolution texture.
-python main.py --name=bird_net_better_texture --tex_size=6 --tex_loss_wt 1. --tex_dt_loss_wt 1. --display_port 8088
+python main.py --name=better_texture --tex_size=6 --tex_loss_wt 1. --tex_dt_loss_wt 1. --display_port 8088
 
 # Stronger texture & higher resolution texture + higher res mesh. 
-python main.py --name=bird_net_hd --tex_size=6 --tex_loss_wt 1. --tex_dt_loss_wt 1. --subdivide 4 --display_port 8089
+python main.py --name=hd --tex_size=6 --tex_loss_wt 1. --tex_dt_loss_wt 1. --subdivide 4 --display_port 8089
 ```
 
 ## Evaluation
 The command below runs the model with different camera settings.
 ```
-python misc/benchmark/run_evals.py --split val  --name bird_net --num_train_epoch 500
+python misc/benchmark/run_evals.py --split val --name <experiment_name> --num_train_epoch <number_of_epochs_trained>
 ```
 Then, run 
 ```
-python misc/benchmark/azele_plot.py --split val  --name bird_net --num_train_epoch 500
+python misc/benchmark/azele_plot.py --split val --name <experiment_name> --num_train_epoch <number_of_epochs_trained>
 ```
 to generate azimuth-elevation plots for the camera distribution, and
 ```
-python misc/benchmark/plot_curvess.py --split val  --name bird_net --num_train_epoch 500
+python misc/benchmark/plot_curvess.py --split val --name <experiment_name> --num_train_epoch <number_of_epochs_trained>
 ```
 in order to see the IOU curve.
 
