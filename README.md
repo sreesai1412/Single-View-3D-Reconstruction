@@ -12,7 +12,11 @@
 
 ## Requiremets
 Python 3 \
-PyTorch >= 1.4.0
+PyTorch >= 1.4.0 \
+In a new ``conda`` or ``virtualenv`` environment run
+```
+pip install -r requirements.txt
+```
 
 ## Dependencies
 #### SoftRas renderer
