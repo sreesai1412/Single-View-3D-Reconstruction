@@ -7,7 +7,7 @@
 #### Part segmentation with 4 parts
 <img src="examples/part_seg1.gif" width="425"/> <img src="examples/part_seg2.gif" width="425"/> 
 
-#### Part segmentation with 7 parts
+#### Vertex part segmentation with 7 parts
 <img src="examples/part_seg3.gif" width="425"/> 
 
 ## Requiremets
@@ -71,7 +71,7 @@ Then, run
 ```
 python misc/benchmark/azele_plot.py --split val  --name bird_net --num_train_epoch 500
 ```
-to generate aimuth-elevation plots for the camera distribution, and
+to generate azimuth-elevation plots for the camera distribution, and
 ```
 python misc/benchmark/plot_curvess.py --split val  --name bird_net --num_train_epoch 500
 ```
