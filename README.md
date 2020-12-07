@@ -2,7 +2,7 @@
 
 ## Examples
 #### 3D-Reconstruction
-<img src="examples/recon_pic.png" width="425"/> 
+![plot](examples/recon_pic.png)
 
 #### Part segmentation with 4 parts
 <img src="examples/part_seg1.gif" width="425"/> <img src="examples/part_seg2.gif" width="425"/> 
