@@ -32,8 +32,7 @@ Download CUB-200-2011 images
 cd misc && wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz && tar -xf CUB_200_2011.tgz
 ```
 #### CUB annotation mat files and pre-computed SfM outputs
-Download CUB annotation mat files and pre-computed SfM outputs, from [here](https://drive.google.com/file/d/1Zr4ZN5Hbev2epLn0v2sHYVdyUAJt_dZB/view?usp=sharing) 
-This should be saved in the ``misc/cachedir`` directory.
+Download CUB annotation mat files and pre-computed SfM outputs, from [here](https://drive.google.com/file/d/1Zr4ZN5Hbev2epLn0v2sHYVdyUAJt_dZB/view?usp=sharing). This should be saved in the ``misc/cachedir`` directory.
 
 ## Model training
 Start `visdom.server` before training
@@ -54,11 +53,15 @@ python main.py --name=bird_net_hd --tex_size=6 --tex_loss_wt 1. --tex_dt_loss_wt
 ```
 
 ## Evaluation
-The command below runs the model with different ablation settings.
+The command below runs the model with different camera settings.
 ```
 python misc/benchmark/run_evals.py --split val  --name bird_net --num_train_epoch 500
 ```
 Then, run 
+```
+python misc/benchmark/azele_plot.py --split val  --name bird_net --num_train_epoch 500
+```
+to generate aimuth-elevation plots for the camera distribution, and
 ```
 python misc/benchmark/plot_curvess.py --split val  --name bird_net --num_train_epoch 500
 ```
