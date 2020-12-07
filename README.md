@@ -5,10 +5,10 @@
 ![plot](examples/recon_pic.png)
 
 #### Part segmentation with 4 parts
-<img src="examples/part_seg1.gif" width="350"/> <img src="examples/part_seg2.gif" width="350"/> 
+<img src="examples/part_seg1.gif" width="400"/> <img src="examples/part_seg2.gif" width="400"/> 
 
 #### Vertex part segmentation with 7 parts
-<img src="examples/part_seg3.gif" width="425"/> 
+<img src="examples/part_seg3.gif" width="400"/> 
 
 ## Requiremets
 Python 3 \
