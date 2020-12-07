@@ -1,5 +1,9 @@
 # Self-Supervised Single View 3D-Reconstruction
 
+## Examples
+
+<img src="examples/recon_pic.png" width="500", height:"300" />
+
 ## Requiremets
 Python 3 \
 PyTorch >= 1.4.0
