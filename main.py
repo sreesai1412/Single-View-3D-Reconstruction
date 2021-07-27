@@ -348,10 +348,10 @@ class ShapeTrainer(train_utils.Trainer):
         else:
             del_v = self.model.symmetrize(self.delta_v)
 
-        '''if opts.only_mean_sym:
+        if opts.only_mean_sym:
             del_v_2 = self.delta_v_2
         else:
-            del_v_2 = self.model.symmetrize(self.delta_v_2)'''
+            del_v_2 = self.model.symmetrize(self.delta_v_2)
 
         # Deform mean shape:
         self.mean_shape = self.model.get_mean_shape()
