@@ -788,14 +788,14 @@ def main(_):
     trainer.init_training()
     #fwd, bwd, proj, mask, tex, seg,  loss = trainer.train()
     trainer.train()
-    '''print('Fwd time/iter: ', np.array(fwd).mean())
+    print('Fwd time/iter: ', np.array(fwd).mean())
     print('Bwd time/iter: ', np.array(bwd).mean())
     print('proj time/iter: ', np.array(proj).mean())
     print('mask time/iter: ', np.array(mask).mean())
     print('tex time/iter: ', np.array(tex).mean())
     print('seg time/iter: ', np.array(seg).mean())
     print('loss time/iter: ', np.array(loss).mean())
-    return'''
+    return
 
 
 if __name__ == '__main__':
