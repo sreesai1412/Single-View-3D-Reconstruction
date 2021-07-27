@@ -271,7 +271,7 @@ class ShapeTrainer(train_utils.Trainer):
     def flip_train_predictions_swap(self, cams_hypo, true_size):
         # Copy cam
         # Copy Cam Probs
-        '''keys_to_copy = ['cam_probs', 'cam_sample_inds']
+        keys_to_copy = ['cam_probs', 'cam_sample_inds']
         for key in keys_to_copy:
             codes_pred[key]= torch.cat([codes_pred[key][:true_size], codes_pred[key][:true_size]])
 
@@ -279,7 +279,7 @@ class ShapeTrainer(train_utils.Trainer):
         new_cam_pose = self.reflect_cam_pose(codes_pred['cam'][:true_size, None,:]).squeeze(1)
         if not (codes_pred['cam'][:true_size].shape == new_cam_pose.shape):
             pdb.set_trace()
-        codes_pred['cam'] = torch.cat([codes_pred['cam'][:true_size], new_cam_pose])'''
+        codes_pred['cam'] = torch.cat([codes_pred['cam'][:true_size], new_cam_pose])
 
         cam_hypos_flip = self.reflect_cam_pose(cams_hypo[:true_size])
         #codes_pred['cam_hypotheses'] = torch.cat([codes_pred['cam_hypotheses'][:true_size], new_cam_hypos])
