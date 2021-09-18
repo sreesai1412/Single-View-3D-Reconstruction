@@ -10,6 +10,9 @@
 #### Vertex part segmentation with 7 parts
 <img src="examples/part_seg3.gif" width="400"/> 
 
+#### IoU and PCK results compared to CMR. Here, 'CMR SoftRas VertSeg' is our approach 
+![plot](examples/graphs.png)
+
 ## Requiremets
 Python 3 \
 PyTorch >= 1.4.0 \
