@@ -1,4 +1,4 @@
-# Self-Supervised Single View 3D-Reconstruction
+# Self-Supervised Single View 3D-Reconstruction with Vertex Part Segmentation
 
 ## Examples
 #### 3D-Reconstruction
